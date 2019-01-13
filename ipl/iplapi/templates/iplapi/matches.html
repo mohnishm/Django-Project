@@ -1,0 +1,9 @@
+{% extends "iplapi/base.html" %}
+{% load static %}
+{% block content %}
+    <div id="container1" style="min-width: 310px; height: 400px; margin: 0 auto", data-chart="{{ data }}">
+    </div>
+{% endblock %}
+{% block script %}
+    <script src="{% static 'iplapi/app1.js' %}"></script>
+{% endblock %}
