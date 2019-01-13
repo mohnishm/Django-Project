@@ -1,7 +1,7 @@
 from django.db.models import Count, Sum, F, ExpressionWrapper, DecimalField, FloatField
 from django.shortcuts import render
 from .models import Matches, Deliveries
-from django.http import HttpResponse
+from django.http import JsonResponse
 import json
 from collections import Counter
 
@@ -11,8 +11,7 @@ def matches_per_season(request):
     all_matches = Matches.objects.all()
     count = Counter([match.season for match in all_matches])
     context = {"matches_per_season": count}
-    return HttpResponse(json.dumps(context), content_type="application/json")
-
+    return JsonResponse(context)
 
 def wins_per_season(request):
     winners_in_season =  Matches.objects.values('season', 'winner').annotate(Count("winner")).order_by("season")
@@ -22,20 +21,23 @@ def wins_per_season(request):
         if data["season"] in context and data["winner"] != "":
            context[data["season"]].append({"team":data["winner"],"total_wins":data["winner__count"]})
 
-    return HttpResponse(json.dumps(context), content_type="application/json")
+    return JsonResponse(context)
 
 
 def extra_runs(request):
     extraruns_by_team = Matches.objects.filter(season=2016).annotate(bowling_team=F("deliveries__bowling_team")).values("bowling_team").annotate(extra_runs=Sum("deliveries__extra_runs"))
     context = {"2016_extra_runs":list(extraruns_by_team)}
-    return HttpResponse(json.dumps(context), content_type="application/json")
+    
+    return JsonResponse(context)
 
 def economy(request):
     top_economical_bowler = Matches.objects.filter(season=2015).annotate(bowler=F("deliveries__bowler")).values("bowler").annotate(economy=ExpressionWrapper(Sum("deliveries__total_runs")/(Count("deliveries__ball")/6), output_field=DecimalField())).order_by("economy")[:5]
+    
     top_economical_bowler = [{"bowler":query["bowler"], "economy":round(float(query["economy"]),2)} for query in top_economical_bowler]
 
     context = {"top_economical_bowler":list(top_economical_bowler)}
-    return HttpResponse(json.dumps(context), content_type="application/json")
+    
+    return JsonResponse(context)
 
 
 def batting_average(request):
@@ -43,4 +45,6 @@ def batting_average(request):
         
     top_average = [{"batsman": query["batsman"], "average": round(query["batsman_avg"], 2)} for query in top_batsmen]
 
-    return HttpResponse(json.dumps(top_average), content_type="application/json")
+    context = {"top_batting_average": top_average}
+
+    return JsonResponse(context)
