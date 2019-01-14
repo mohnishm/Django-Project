@@ -8,7 +8,7 @@
         const chart2 = document.querySelector("#container2")
         const data2 = JSON.parse(chart2.dataset.chart)
 
-        const teams = Object.entries(data2.matches_data).map(element => {
+        const teams = Object.entries(data2).map(element => {
             return [element[0], concateObject(element[1])]
         })
 
@@ -58,15 +58,18 @@
             type: 'column'
             },
             title: {
-            text: data2.title
+            text: "Wins per team for every season "
             },
             xAxis: {
-            categories: teams.map(row => row[0])
+            categories: teams.map(row => row[0]),
+            title: {
+                text: "Seasons"
+            }
             },
             yAxis: {
             min: 0,
             title: {
-                text: data2.text
+                text: "Number of wins"
             },
             stackLabels: {
                 enabled: true,

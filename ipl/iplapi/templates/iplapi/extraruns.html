@@ -7,25 +7,25 @@
     <script>
         const chart3 = document.querySelector("#container3")
         const data3 = JSON.parse(chart3.dataset.chart)
-        const datas = data3.matches_data["extra_runs_2016"]
+        const datas = data3["extra_runs_2016"]
 
         Highcharts.chart('container3', {
             chart: {
             type: 'column'
             },
             title: {
-            text: data3.title
+            text: "Extra Runs Conceded By Each Team In 2016"
             },
             xAxis: {
             categories: datas.map(element => element["bowling_team"]),
             title: {
-                text: data3.bottom
+                text: "Teams"
             }
             },
             yAxis: {
             min: 0,
             title: {
-                text: data3.text
+                text: "Extra Runs"
             }
             },
             tooltip: {

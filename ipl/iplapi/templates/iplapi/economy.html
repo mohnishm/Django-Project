@@ -7,25 +7,25 @@
     <script>
         const chart4 = document.querySelector("#container4")
         const data4 = JSON.parse(chart4.dataset.chart)
-        const datas = data4.matches_data["top_economical_bowler"]
+        const datas = data4["top_economical_bowler"]
 
         Highcharts.chart('container4', {
             chart: {
             type: 'column'
             },
             title: {
-            text: data4.title
+            text: "Top Economical Bowlers Of 2015"
             },
             xAxis: {
             categories: datas.map(element => element["bowler"]),
             title: {
-                text: data4.bottom
+                text: "Bowlers"
             }
             },
             yAxis: {
             min: 0,
             title: {
-                text: data4.text
+                text: "Economy"
             }
             },
             tooltip: {

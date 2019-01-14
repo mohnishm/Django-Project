@@ -13,18 +13,18 @@
             type: 'column'
             },
             title: {
-            text: data1.title
+            text: "Matches Per Season"
             },
             xAxis: {
-            categories: Object.keys(data1.matches_data.matches_per_season),
+            categories: Object.keys(data1.matches_per_season),
             title: {
-                text: data1.bottom
+                text: "Seasons"
             }
             },
             yAxis: {
             min: 0,
             title: {
-                text: data1.text
+                text: "Number of Matches"
             }
             },
             tooltip: {
@@ -33,7 +33,7 @@
             },
             series: [{
                 name:"matches",
-            data: Object.values(data1.matches_data.matches_per_season)
+            data: Object.values(data1.matches_per_season)
             }]
         });
         

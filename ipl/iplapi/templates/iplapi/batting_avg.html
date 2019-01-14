@@ -7,25 +7,25 @@
     <script>
         const chart5 = document.querySelector("#container5")
         const data5 = JSON.parse(chart5.dataset.chart)
-        const datas = data5.matches_data["top_batting_average"]
+        const datas = data5["top_batting_average"]
 
         Highcharts.chart('container5', {
             chart: {
             type: 'column'
             },
             title: {
-            text: data5.title
+            text: "Top Batting Average for 2012"
             },
             xAxis: {
             categories: datas.map(element => element["batsman"]),
             title: {
-                text: data5.bottom
+                text: "Batsman"
             }
             },
             yAxis: {
             min: 0,
             title: {
-                text: data5.text
+                text: "Batting Average"
             }
             },
             tooltip: {
