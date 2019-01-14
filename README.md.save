@@ -1,0 +1,14 @@
+IPL Data Project in Django
+-------------------------------------
+
+Project contains 5 URL's for charts:
+
+1matches per season)
+2)/winsperseason
+3)/extraruns
+4)/economy
+5)/batting_average
+
+And 5 URL's for json
+
+

@@ -10,7 +10,7 @@ Highcharts.chart('container5', {
       text: data5.title
     },
     xAxis: {
-      categories: datas.map(el => el["batsman"]),
+      categories: datas.map(element => element["batsman"]),
       title: {
         text: data5.bottom
       }
@@ -27,6 +27,6 @@ Highcharts.chart('container5', {
     },
     series: [{
         name:"average",
-        data: datas.map(el => el["average"])
+        data: datas.map(element => element["average"])
     }]
   });

@@ -10,7 +10,7 @@ Highcharts.chart('container4', {
       text: data4.title
     },
     xAxis: {
-      categories: datas.map(el => el["bowler"]),
+      categories: datas.map(element => element["bowler"]),
       title: {
         text: data4.bottom
       }
@@ -27,7 +27,7 @@ Highcharts.chart('container4', {
     },
     series: [{
         name:"matches",
-        data: datas.map(el => el["economy"])
+        data: datas.map(element => element["economy"])
     }]
   });
   

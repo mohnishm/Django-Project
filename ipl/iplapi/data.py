@@ -15,12 +15,14 @@ class DataFromDb:
     def __init__(self):
         pass
 
+    
     def matches_per_season(self):
         all_matches = Matches.objects.all()
         count = Counter([match.season for match in all_matches])
         context = {"matches_per_season": count}
         return context
 
+    
     def wins_per_season(self):
         winners_in_season =  Matches.objects.values('season', 'winner').annotate(Count("winner")).order_by("season")
         seasons = set(obj["season"] for obj in Matches.objects.values('season'))
@@ -38,6 +40,7 @@ class DataFromDb:
         
         return context
 
+    
     def economy(self):
         top_economical_bowler = Matches.objects.filter(season=2015).annotate(bowler=F("deliveries__bowler")).values("bowler").annotate(economy=ExpressionWrapper(Sum("deliveries__total_runs")/(Count("deliveries__ball")/6), output_field=DecimalField())).order_by("economy")[:5]
         top_economical_bowler = [{"bowler":query["bowler"], "economy":round(float(query["economy"]),2)} for query in top_economical_bowler]

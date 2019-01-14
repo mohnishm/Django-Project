@@ -1,8 +1,8 @@
 const chart2 = document.querySelector("#container2")
 const data2 = JSON.parse(chart2.dataset.chart)
 
-const teams = Object.entries(data2.matches_data).map(el => {
-    return [el[0], concateObject(el[1])]
+const teams = Object.entries(data2.matches_data).map(element => {
+    return [element[0], concateObject(element[1])]
 })
 let values = teams.map(row => {
     return Object.keys(row[1])
