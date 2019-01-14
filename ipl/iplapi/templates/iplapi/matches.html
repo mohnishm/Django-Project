@@ -5,8 +5,10 @@
 {% endblock %}
 {% block script %}
     <script>
-        const chart1 = document.querySelector("#container1")
-        const data1 = JSON.parse(chart1.dataset.chart)
+        const chart1 = document.querySelector("#container1");
+        const data1 = JSON.parse(chart1.dataset.chart);
+        const datas = data1["matches_per_season"]
+        
 
         Highcharts.chart('container1', {
             chart: {
@@ -16,7 +18,7 @@
             text: "Matches Per Season"
             },
             xAxis: {
-            categories: Object.keys(data1.matches_per_season),
+            categories: datas.map(element => element["season"]),
             title: {
                 text: "Seasons"
             }
@@ -33,7 +35,7 @@
             },
             series: [{
                 name:"matches",
-            data: Object.values(data1.matches_per_season)
+            data: datas.map(element => element["matches"])
             }]
         });
         

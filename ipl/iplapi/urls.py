@@ -8,10 +8,10 @@ urlpatterns = [
     path('extraruns', views.extra_runs_charts, name='extra_runs'),
     path('economy', views.economy_charts, name='economy'),
     path('batting_average', views.batting_average_charts, name='batting_avg'),
-    path("json/matchesps/", views.matches_per_season, name="total_matches"),
-    path("json/winsperseason/", views.wins_per_season, name="wins_of_teams"),
-    path("json/extraruns/", views.extra_runs, name="extra_runs"),
-    path("json/economy/", views.economy, name="top_bowlers"),
+    path("json/matchesps/", views.matches_per_season, name="matches"),
+    path("json/winsperseason/", views.wins_per_season, name="wins"),
+    path("json/extraruns/", views.extra_runs, name="extra"),
+    path("json/economy/", views.economy, name="econ"),
     path("json/batting_average/", views.batting_average, name="batting_average"),  
 
 ]

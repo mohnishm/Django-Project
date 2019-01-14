@@ -11,17 +11,15 @@ def Home(request):
 
 
 def matches_per_season(request):
-    all_matches = Matches.objects.all()
-    count = Counter([match.season for match in all_matches])
-    context = {"matches_per_season": count}
+    count = Matches.objects.values('season').annotate(matches=Count("season")).order_by("season")
+    context = {"matches_per_season": list(count)}
     return JsonResponse(context)
 
 
 def matches_per_season_charts(request):
-    all_matches = Matches.objects.all()
-    count = Counter([match.season for match in all_matches])
-    context = {"matches_per_season": count}
-    data = dict(context)
+    count = Matches.objects.values('season').annotate(matches=Count("season")).order_by("season")
+    context = {"matches_per_season": list(count)}
+    data = (context)
     json_data = json.dumps(data)
     return render(request, "iplapi/matches.html", context={"data":json_data})
 
