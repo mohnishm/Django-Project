@@ -95,5 +95,3 @@ def batting_average_charts(request):
     data = dict(context)
     json_data = json.dumps(data)
     return render(request, "iplapi/batting_avg.html", context={"data":json_data})
-
-
