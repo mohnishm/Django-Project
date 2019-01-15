@@ -15,8 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls import include, url
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('iplapi.urls'))
-]
+if settings.DEBUG:
+    import debug_toolbar
+
+    urlpatterns = []
+    urlpatterns = [
+        path('__debug__/', include(debug_toolbar.urls)),
+        path('admin/', admin.site.urls),
+        path('', include('iplapi.urls'))
+        # For django versions before 2.0:
+        # url(r'^__debug__/', include(debug_toolbar.urls)),
+
+    ] + urlpatterns
