@@ -1,0 +1,22 @@
+{% extends "iplapi/base.html" %}
+{% block content %}
+    <div>
+        <h1>IPL Data Project with Highcharts charts and apis</h1>
+        <p>Routes to get json data</p>
+        <ul>
+            <li><a href="{% url 'matches' %}">Matches Per Season</a></li>
+            <li><a href="{% url 'wins' %}">Wins Per Season</a></li>
+            <li><a href="{% url 'extra' %}">Extra Runs</a></li>
+            <li><a href="{% url 'econ' %}">Economy</a></li>
+            <li><a href="{% url 'batting_average' %}">Batting Average</a></li>
+        </ul>
+        <p>Routes for Charts</p>
+        <ul>
+            <li><a href="{% url 'matches_ps' %}">Matches Per Season</a></li>
+            <li><a href="{% url 'wins_ps' %}">Wins Per Season</a></li>
+            <li><a href="{% url 'extra_runs' %}">Extra Runs</a></li>
+            <li><a href="{% url 'economy' %}">Economy</a></li>
+            <li><a href="{% url 'batting_avg' %}">Batting Average</a></li>
+        </ul>
+    </div>
+{% endblock %}

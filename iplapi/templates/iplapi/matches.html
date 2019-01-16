@@ -1,0 +1,43 @@
+{% extends "iplapi/base.html" %}
+{% block content %}
+    <div id="container1" style="min-width: 310px; height: 400px; margin: 0 auto", data-chart="{{ data }}">
+    </div>
+{% endblock %}
+{% block script %}
+    <script>
+        const chart1 = document.querySelector("#container1");
+        const data1 = JSON.parse(chart1.dataset.chart);
+        const datas = data1["matches_per_season"]
+        
+
+        Highcharts.chart('container1', {
+            chart: {
+            type: 'column'
+            },
+            title: {
+            text: "Matches Per Season"
+            },
+            xAxis: {
+            categories: datas.map(element => element["season"]),
+            title: {
+                text: "Seasons"
+            }
+            },
+            yAxis: {
+            min: 0,
+            title: {
+                text: "Number of Matches"
+            }
+            },
+            tooltip: {
+            pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b>',
+            shared: true
+            },
+            series: [{
+                name:"matches",
+            data: datas.map(element => element["matches"])
+            }]
+        });
+        
+    </script>
+{% endblock %}
